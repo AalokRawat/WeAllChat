@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Spring Boot WebSocket Chat wschat.Application</title>
-    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
 <noscript>
@@ -35,18 +35,25 @@
         <ul id="messageArea">
 
         </ul>
-        <form id="messageForm" name="messageForm" nameForm="messageForm">
-            <div class="form-group clearfix">
+        <div class="form-group clearfix" >
+
+            <form id="messageForm" name="messageForm" nameForm="messageForm">
                 <div class="input-group ">
                     <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
                     <button type="submit" class="primary">Send</button>
                 </div>
-                <div class="upload-btn-wrapper">
-                    <button class="btn">Upload</button>
-                    <input type="file" name="myfile" multiple/>
+            </form>
+
+            <form id="fileUploadForm" enctype="multipart/form-data" method="POST">
+                <div class="input-group ">
+                    <div class="upload-btn-wrapper">
+                        <img class="btn" src="attachment.png">
+                        <input type="file" name="file" id="file"/><br/><br/>
+                    </div>
+                    <input type="submit" value="Upload" class="btn1" id="btnSubmit"/>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 

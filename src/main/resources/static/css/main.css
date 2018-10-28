@@ -33,10 +33,10 @@ body:before {
 }
 
 .clearfix:after {
-     display: block;
-     content: "";
-     clear: both;
- }
+    display: block;
+    content: "";
+    clear: both;
+}
 
 .hidden {
     display: none;
@@ -50,7 +50,13 @@ body:before {
 }
 
 .form-group {
+    margin-left: 15px;
     margin-bottom: 15px;
+}
+
+.form-group form,
+.form-group form div {
+    display: inline;
 }
 
 input {
@@ -74,16 +80,16 @@ a {
 button {
     box-shadow: none;
     border: 1px solid transparent;
-    font-size: 14px;
+    font-size: 12px;
     outline: none;
     line-height: 100%;
     white-space: nowrap;
     vertical-align: middle;
-    padding: 0.6rem 1rem;
+    padding: 0.2rem 0.2rem;
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    min-height: 38px;
+    min-height: 40px;
 }
 
 button.default {
@@ -220,16 +226,25 @@ button.accent {
 
 #messageForm .input-group input {
     float: left;
-    width: calc(100% - 150px);
+    width: calc(100% - 220px);
 }
 
 #messageForm .input-group button {
     float: left;
-    width: 80px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     margin-left: 5px;
 }
 
+#fileUploadForm .input-group .upload-btn-wrapper {
+    float:  left;
+    margin-left: 5px;
+}
+
+#fileUploadForm .input-group input{
+    float:  left;
+    margin-left: 5px;
+}
 .chat-header {
     text-align: center;
     padding: 15px;
@@ -281,7 +296,7 @@ button.accent {
     }
 
     #messageForm .input-group input {
-        width: calc(100% - 150px);
+        width: calc(100% - 220px);
     }
 
     .chat-header {
@@ -308,14 +323,26 @@ button.accent {
     border: 2px solid red;
     color: #fff;
     background-color: #128ff2;
-    padding: 10px 10px;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: bold;
+    width: 40px;
+    height: auto;
 }
 
+.btn1 {
+    border: 2px solid red;
+    color: #fff;
+    background-color: #128ff2;
+    width: 55px;
+    height: 40px;
+}
+.upload-btn-wrapper {
+    float: left;
+    left: 10px;
+    overflow: hidden;
+    display: inline-block;
+}
 .upload-btn-wrapper input[type=file] {
-    font-size: 100px;
+    float:  left;
+    font-size: 20px;
     position: absolute;
     left: 0;
     top: 0;

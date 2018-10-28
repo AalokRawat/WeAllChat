@@ -71,7 +71,6 @@ function onMessageReceived(payload) {
 
     var messageElement = document.createElement('li');
 
-
     messageElement.classList.add('chat-message');
 
     var avatarElement = document.createElement('i');
@@ -88,7 +87,17 @@ function onMessageReceived(payload) {
 
     var textElement = document.createElement('p');
     var messageText = document.createTextNode(message.content);
-    textElement.appendChild(messageText);
+    if(messageText.data.indexOf("http") >= 0){
+        var a = document.createElement('a');
+        var i = messageText.data.lastIndexOf("/");
+        var linkText = document.createTextNode(messageText.data.substring(i+1));
+        a.appendChild(linkText);
+        a.title = messageText.data.substring(i+1);
+        a.href = messageText.data;
+        textElement.appendChild(a);
+    } else {
+        textElement.appendChild(messageText);
+    }
 
     messageElement.appendChild(textElement);
 
@@ -116,16 +125,44 @@ window.onload = function() {
     loadUser();
 };
 
-$('input[type="file"]').change(function(){
-    $.ajax({
-        async: false,
-        type: 'POST',
-        url: 'http://localhost:8080/image/',
-        data: '{ "filepath": "/Users/aalokr/Downloads/'+this.files[0].name+'"}',
-        contentType: 'application/json',
-        success: function (response) { messageInput.value=response; },
-        error: function (err) { alert(err.responseText); }
+$(document).ready(function () {
+
+    $("#btnSubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        // Get form
+        var form = $('#fileUploadForm')[0];
+
+        // Create an FormData object
+        var data = new FormData(form);
+
+        // If you want to add an extra field for the FormData
+        data.append("name", document.getElementById('file').files.item(0).name);
+
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "http://18.188.250.148:8080/image/",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                messageInput.value = data;
+                sendMessage(this);
+                console.log("SUCCESS : ", data);
+
+            },
+            error: function (e) {
+                console.log("ERROR : ", e);
+            }
+        });
+
     });
+
 });
 
 $.ajaxSetup({
